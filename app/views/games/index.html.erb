@@ -1,0 +1,7 @@
+<h1>Games</h1>
+
+<ul>
+  <% @games.each do |game| %>
+   <li><%= link_to game.city, game %></li>
+  <% end %>
+</ul>
