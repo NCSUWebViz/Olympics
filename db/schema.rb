@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110924154208) do
+ActiveRecord::Schema.define(:version => 20110924155651) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20110924154208) do
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gold"
+    t.integer  "silver"
+    t.integer  "bronze"
   end
 
   create_table "games", :force => true do |t|
@@ -26,9 +29,6 @@ ActiveRecord::Schema.define(:version => 20110924154208) do
     t.string   "city"
     t.integer  "year"
     t.string   "season"
-    t.integer  "gold"
-    t.integer  "silver"
-    t.integer  "bronze"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20110924154208) do
     t.string   "medal"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
 
 end
