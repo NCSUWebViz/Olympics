@@ -29,37 +29,28 @@ class DatabaseOlympics
       country.gold = tr.css('td')[1].content
       country.silver = tr.css('td')[2].content
       country.bronze = tr.css('td')[3].content
-      country.save if save
+      if save
+        country.save
+        DatabaseOlympics.get_athletes(game.id, country)
+      end
     end
     
     nil
   end
 
-  def self.get_athletes(game_id, country_id)
+  def self.get_athletes(game_id, country)
     # http://nokogiri.org/
-    doc = Nokogiri::HTML(open("http://www.databaseolympics.com/country/countryyear.htm?g=#{game_id}&cty=#{country_id}"))
-  
-    # Country
-    doc.css('font.nme b').each do |b|
-      puts b.content
-    end
-  
-    # Year, Type and City
-    doc.css('font.ind b').each do |b|
-      puts b.content
-    end
+    doc = Nokogiri::HTML(open("http://www.databaseolympics.com/country/countryyear.htm?g=#{game_id}&cty=#{country.code}"))
   
     # Athlete name, sport, event, medal and result if available
     doc.css('table.pt8 tr.cl1, table.pt8 tr.cl2').each do |tr|
-      year = tr.css('td')[0].content
-      sport = tr.css('td')[1].content
-      event = tr.css('td')[2].content
-      athlete = tr.css('td')[3].content
-      result = tr.css('td')[4].content
-      medal = tr.css('td')[5].content
-      puts <<EOS
-      #{athlete}| #{sport} (#{event}) | #{medal} #{result unless result.empty?}
-EOS
+      medal = country.medals.new
+      medal.sport = tr.css('td')[1].content
+      medal.event = tr.css('td')[2].content
+      medal.athlete = tr.css('td')[3].content
+      medal.result = tr.css('td')[4].content
+      medal.medal = tr.css('td')[5].content
+      medal.save
     end
   end 
 end

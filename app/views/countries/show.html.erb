@@ -1,0 +1,13 @@
+<h1><%= @country.name %></h1>
+
+<table>
+  <% @country.medals.each do |medal| %>
+   <tr>
+    <td><%= medal.sport %></td>
+    <td><%= medal.event %></td>
+    <td><%= medal.athlete %></td>
+    <td><%= medal.medal %></td>
+    <td><%= medal.result %></td>
+   </tr>
+  <% end %>
+</table>

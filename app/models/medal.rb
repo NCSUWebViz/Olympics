@@ -3,5 +3,4 @@ class Medal < ActiveRecord::Base
   # ---------------------------------------------------------------------------
   # Associations
   belongs_to :countries
-  belongs_to :games, :through => :games
 end

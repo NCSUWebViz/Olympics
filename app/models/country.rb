@@ -3,5 +3,5 @@ class Country < ActiveRecord::Base
   # ---------------------------------------------------------------------------
   # Associations
   belongs_to :games
-  has_many :athletes
+  has_many :medals
 end
