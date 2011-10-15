@@ -1,0 +1,15 @@
+[
+<% @medals.each do |medal| %>
+  {
+    "season":"<%= medal.country.game.season %>",
+    "location":"<%= medal.country.game.city %>, <%= medal.country.game.country %>",
+    "year":"<%= medal.country.game.year %>",
+    "country":"<%= medal.country.name %>",
+    "sport":"<%= medal.sport %>",
+    "event":"<%= medal.event %>",
+    "athlete":"<%= medal.athlete %>",
+    "medal":"<%= medal.medal %>",
+    "result":"<%= medal.result %>",
+  },
+<% end %>
+]
