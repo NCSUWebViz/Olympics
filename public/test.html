@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Test</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  var items = [];
+  $(document).ready(function() {
+    $.getJSON('http://localhost:3000/medals.json')
+      .success(function(data) {
+        $.each(data, function(index, object) {
+          $('ul').append('<li id="athlete-' + index + '">' + object['athlete'] + ' - ' + object['country'] + '</li>')
+        });
+      });
+  });
+  </script>
+</head>
+<body>
+<h1>Test</h1>
+<ul></ul>
+</body>
+</html>
