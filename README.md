@@ -1,4 +1,4 @@
-# Olympic Gaame Medalists
+# Olympic Game Medalists
 
 Content scraper, data store and HTML/JSON.
 
