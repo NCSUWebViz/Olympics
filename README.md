@@ -6,6 +6,7 @@ http://olympic-games-medalists.heroku.com/
 
 ## Examples
 
+* http://olympic-games-medalists.heroku.com/test.html (JQuery/JSON example)
 * http://olympic-games-medalists.heroku.com/games.json
 * http://olympic-games-medalists.heroku.com/games/47.json
 * http://olympic-games-medalists.heroku.com/countries/1344.json
