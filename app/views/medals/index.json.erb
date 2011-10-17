@@ -9,7 +9,7 @@
     "event":"<%= medal.event %>",
     "athlete":"<%= medal.athlete %>",
     "medal":"<%= medal.medal %>",
-    "result":"<%= medal.result %>",
-  },
+    "result":"<%= medal.result %>"
+  }<%=',' if medal != @medals.last %>
 <% end %>
 ]
