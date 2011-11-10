@@ -1,0 +1,12 @@
+[
+<% @games.each do |game| %>
+  {
+    "game_id":"<%= game.id %>",
+    "location":"<%= game.city %>, <%= game.country %>",
+    "year":"<%= game.year %>",
+    "sport":"<%= params[:id] %>",
+    "sport_medal_count":"<%= game.sport_medal_count %>",
+    "total_medal_count":"<%= game.medals.count - game.sport_medal_count %>",
+  }<%=',' if game != @games.last %>
+<% end %>
+]

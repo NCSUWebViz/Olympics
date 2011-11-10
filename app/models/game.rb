@@ -4,6 +4,7 @@ class Game < ActiveRecord::Base
   # Associations
   has_many :countries
   has_many :athletes, :through => :countries
+  has_many :medals, :through => :countries
   # ---------------------------------------------------------------------------
   # Class Methods
   def self.retreive(game_id, save = true)
