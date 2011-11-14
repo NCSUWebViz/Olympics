@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+<script type="text/javascript">
+var Colors = [ [0, 133, 199], [244, 195, 0], [0, 0, 0], [0, 159, 61], [223, 0, 36] ];
+function draw(flagColors) {
+        var canvas = document.getElementById("canvas");
+        if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");   
+				
+                var so = {
+				x: 0,
+				y: 0 }; 
+                var s = {
+				w: 450,
+				h: 700};
+                drawRings(ctx, so, flagColors, s);
+        }
+		listen(canvas);
+}
+function listen(canvas)
+{
+	var mouseX=0, mouseY=0;
+    var top = 0;
+    var left = 0;
+    
+    canvas.addEventListener('mousemove', function(evt){
+    mouseX = evt.clientX - canvas.offsetLeft + window.pageXOffset;
+    mouseY = evt.clientY - canvas.offsetTop + window.pageYOffset;
+	}, false);
+	
+	canvas.addEventListener( "click", function ( e ){
+  		if( mouseX >= 163 && mouseX < 305 && mouseY >=283 && mouseY <= 296 ){
+//		window.alert("Hi ... MouseX is now " + mouseX);
+    	window.location = "test_bar.html";
+		}
+	}, false );
+}
+
+function drawRings(ctx, offset, colors, s) {
+        var p = Math.PI;
+//        ctx.fillStyle = "#aaaaaa";
+	    ctx.shadowColor = "#bbbbbb";
+    	ctx.shadowBlur = 15;
+    	ctx.shadowOffsetX = 15;
+    	ctx.shadowOffsetY = 15;
+    	ctx.fill();
+        ctx.save();
+		/*
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.fillRect(offset.x, offset.y, 3 * s.w, s.h); //s.w = 500, s.h = 800
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.strokeRect(offset.x, offset.y, 3 * s.w, s.h);
+		*/
+        ctx.lineWidth = 15;
+        ctx.lineCap = "butt";
+        for(j = 0; j < 2; j++) {
+            for(i = 0; i < 4; i++) {
+                ctx.strokeStyle = "rgb(" + colors[j*2+1][0] + "," + colors[j*2+1][1] + "," + colors[j*2+1][2] + ")";
+                ctx.beginPath();
+                ctx.arc(offset.x + s.w*(j+1),offset.y + s.h/1.8, s.h/5,p/2-i*p/2,p/2-i*p/2-p/2,true); // FF Warning for last param!
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }        
+
+        for(var j = 0; j < 3; j++) {
+            for(var i = 0; i < 4; i++) {
+                ctx.strokeStyle = "rgb(" + colors[j*2][0] + "," + colors[j*2][1] + "," + colors[j*2][2] + ")";
+                ctx.beginPath();
+                ctx.arc(offset.x + s.w/2 + s.w*j, offset.y + s.h/2.4, s.h/5, p/2-i*p/2,p/2-i*p/2-p/2, true); // FF Warning for last param!
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+        
+       // manage intertwined rings
+       for(j = 0; j < 2; j++) {
+            for(i = 1; i < 4; i+=2) {
+                ctx.strokeStyle = "rgb(" + colors[j*2+1][0] + "," + colors[j*2+1][1] + "," + colors[j*2+1][2] + ")";
+                ctx.beginPath();
+                ctx.arc(offset.x + s.w*(j+1),offset.y + s.h/1.8, s.h/5,p/2-i*p/2,p/2-i*p/2-p/2,true); // FF Warning for last param!
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }     
+  		
+		ctx.font = "bold 25px sans-serif";
+		ctx.shadowColor = "rgb(100, 100, 100)";
+		ctx.shadowOffsetX = 15;
+		ctx.shadowOffsetY = 15;
+		ctx.shadowBlur = 20;
+		var gradient = ctx.createLinearGradient(0, 0, 150, 100);
+		gradient.addColorStop(0, "rgb(255,255,0)");
+		gradient.addColorStop(1, "rgb(0, 133, 199)");
+		ctx.fillStyle = gradient;
+		ctx.fillText("USA in 1960", 160, 300);      
+
+		ctx.restore();
+    }
+</script>
+</head>
+<body onload="draw(Colors)">
+<canvas id="canvas" width = "1300" height="600"> Sorry, your browser does not support HTML canvas!!</canvas>
+</body>
+</html>  

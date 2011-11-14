@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+<html debug="true">
+<head>
+<title>Highcharts Demo Gallery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--  meta http-equiv="X-UA-Compatible" content="chrome=1" -->
+<link rel="shortcut icon" href="../favicon.ico"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!-- script type="text/javascript" src="http://code.jquery.com/jquery-1.7.js"></script -->
+<script type="text/javascript">
+jQuery.noConflict();
+</script>
+<script type="text/javascript" src="Highcharts-2.1.9/js/highcharts.js"></script>
+<script type="text/javascript" src="Highcharts-2.1.9/js/modules/exporting.js"></script>
+
+<script type="text/javascript">
+var example = 'bar-stacked',
+	theme = 'default';
+</script>
+<script type="text/javascript">
+	//Highcharts.theme = { colors: ['#4572A7'] };// prevent errors in default theme
+	Highcharts.theme = { colors: ['#E0FFFF'] };// prevent errors in default theme
+	var highchartsOptions = Highcharts.getOptions(); 
+</script>
+<script type="text/javascript">
+		var chart;
+		var graphname, sport = [], gold = [], silver = [], bronze = [];
+		jQuery(document).ready(function() {
+			jQuery.getJSON('sports_medals.json', function(data) {
+      		jQuery.each(data,function(index,val){
+				graphname = val.graphname;
+				sport.push(val.name);
+				gold.push(parseInt(val.gold,10));
+				silver.push(parseInt(val.silver,10));
+				bronze.push(parseInt(val.bronze,10));
+			});
+
+			chart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container',
+					defaultSeriesType: 'bar'
+				},
+				title: {
+//					text: 'USA in 1960'
+					text: graphname
+				},
+				xAxis: {
+					categories: sport
+				},
+				yAxis: {
+					min: 0,
+					title: {
+						text: 'No. of medals'
+					}
+				},
+				colors: [
+					"#8C7853",	//bronze
+					"#C0C0C0",	//silver
+					"#FFD700"	//gold				
+				],
+				legend: {
+					backgroundColor: Highcharts.theme.legendBackgroundColorSolid || '#E0FFFF',
+					reversed: true
+				},
+				tooltip: {
+					formatter: function() {
+						return ''+
+							 this.series.name +': '+ this.y +'';
+					}
+				},
+				plotOptions: {
+					series: {
+						stacking: 'normal'
+					}
+				},
+			        series: [{
+					name: 'Bronze',
+					data: bronze
+				}, {
+					name: 'Silver',
+					data: silver
+				}, {
+					name: 'Gold',
+					data: gold
+				}]
+			});
+			
+      		});
+			
+			
+		});
+	</script>
+</head>
+<body>
+<div id="demo-content">
+	<div id="container" class="highcharts-container" style="height:410px; margin: 0 2em; clear:both; min-width: 600px">
+	</div>
+</div>
+</body>
+</html>
+
+
+
