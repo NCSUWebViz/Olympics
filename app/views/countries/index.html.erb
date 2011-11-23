@@ -1,0 +1,18 @@
+<% @countries.each do |name, countries| %>
+<pre>
+<%= name %>
+<%= position = Geocoder.coordinates(name) %>
+<%= Geocoder::Calculations.distance_between(position, [0.00, position[1]]) unless position.nil? %>
+
+<% countries.each do |country| %>
+  <%= country.game.season %>
+  <%= country.game.city %>, <%= country.game.country %>
+  <%= country.game.year %>
+  <%= country.gold %>
+  <%= country.silver %>
+  <%= country.bronze %>
+  <%= country.gold + country.silver + country.bronze %>
+<% end %>
+</pre>
+<hr />
+<% end %>
