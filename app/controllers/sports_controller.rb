@@ -7,7 +7,7 @@ class SportsController < ApplicationController
   end
 
   def show
-    @games = Game.select('games.id, game.country, game.city, game.year, game.season, count(medals.id) AS sport_medal_count').group('games.id, game.country, game.city, game.year, game.season, medals.sport').joins(:countries => :medals).where(:medals => {:sport => params[:id]})
+    @games = Game.select('games.id, games.country, games.city, games.year, games.season, count(medals.id) AS sport_medal_count').group('games.id, games.country, games.city, games.year, games.season, medals.sport').joins(:countries => :medals).where(:medals => {:sport => params[:id]})
     respond_with(@games)
   end
 end
