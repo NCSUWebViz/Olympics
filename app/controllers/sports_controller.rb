@@ -11,5 +11,3 @@ class SportsController < ApplicationController
     respond_with(@games)
   end
 end
-
-//Game(id: integer, country: string, city: string, year: integer, season: string, url: string, created_at: datetime, updated_at: datetime) 
