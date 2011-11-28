@@ -6,7 +6,7 @@
     "year":"<%= game.year %>",
     "sport":"<%= params[:id] %>",
     "sport_medal_count":"<%= game.sport_medal_count %>",
-    "total_medal_count":"<%= game.medals.count - game.sport_medal_count %>",
+    "total_medal_count":"<%= game.medals.count - game.sport_medal_count.to_i %>",
   }<%=',' if game != @games.last %>
 <% end %>
 ]
