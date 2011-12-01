@@ -1,0 +1,19 @@
+[
+<% @countries.each do |name, countries| %>
+  { 
+    "name": "<%= name %>",
+    "distance": <%= countries.first.geocoded? ? Geocoder::Calculations.distance_between([countries.first.latitude, countries.first.longitude], [0.00, countries.first.longitude]): 0 %>,
+    <% countries.each do |country| %>
+    {
+      "season": "<%= country.game.season %>",
+      "location":"<%= country.game.city %>, <%= country.game.country %>",
+      "year":" <%= country.game.year %>",
+      "gold": <%= country.gold %>,
+      "silver": <%= country.silver %>,
+      "bronze": <%= country.bronze %>,
+      "total": <%= country.gold + country.silver + country.bronze %>,
+    }<%=',' if country != countries.last %>
+    <% end %>
+  }<%=',' if name != @countries.keys.last %>
+<% end %>
+]

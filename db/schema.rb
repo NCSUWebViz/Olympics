@@ -11,38 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110924155651) do
+ActiveRecord::Schema.define(:version => 20111130234215) do
 
   create_table "countries", :force => true do |t|
-    t.string   "name"
-    t.string   "code"
-    t.integer  "game_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "gold"
-    t.integer  "silver"
-    t.integer  "bronze"
+    t.string    "name"
+    t.string    "code"
+    t.integer   "game_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "gold"
+    t.integer   "silver"
+    t.integer   "bronze"
+    t.float     "latitude"
+    t.float     "longitude"
   end
 
   create_table "games", :force => true do |t|
-    t.string   "country"
-    t.string   "city"
-    t.integer  "year"
-    t.string   "season"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "country"
+    t.string    "city"
+    t.integer   "year"
+    t.string    "season"
+    t.string    "url"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "medals", :force => true do |t|
-    t.string   "sport"
-    t.string   "event"
-    t.string   "athlete"
-    t.string   "result"
-    t.string   "medal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "country_id"
+    t.string    "sport"
+    t.string    "event"
+    t.string    "athlete"
+    t.string    "result"
+    t.string    "medal"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "country_id"
   end
 
 end
