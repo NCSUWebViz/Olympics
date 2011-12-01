@@ -8,6 +8,7 @@
         [countries.first.latitude, countries.first.longitude],
         [0.00, countries.first.longitude]
       ): 0 %>,
+    "participations": [
     <% countries.each do |country| %>
     {
       "season": "<%= country.game.season %>",
@@ -16,9 +17,10 @@
       "gold": <%= country.gold %>,
       "silver": <%= country.silver %>,
       "bronze": <%= country.bronze %>,
-      "total": <%= country.gold + country.silver + country.bronze %>,
+      "total": <%= country.gold + country.silver + country.bronze %>
     }<%=',' if country != countries.last %>
     <% end %>
+    ]
   }<%=',' if name != @countries.keys.last %>
 <% end %>
 ]
