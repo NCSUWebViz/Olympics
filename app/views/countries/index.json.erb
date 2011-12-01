@@ -2,6 +2,7 @@
 <% @countries.each do |name, countries| %>
   { 
     "name": "<%= name %>",
+    "code": "<%= countries.first.code %>",
     "distance": <%= countries.first.geocoded? ?
       Geocoder::Calculations.distance_between(
         [countries.first.latitude, countries.first.longitude],
