@@ -2,7 +2,11 @@
 <% @countries.each do |name, countries| %>
   { 
     "name": "<%= name %>",
-    "distance": <%= countries.first.geocoded? ? Geocoder::Calculations.distance_between([countries.first.latitude, countries.first.longitude], [0.00, countries.first.longitude]): 0 %>,
+    "distance": <%= countries.first.geocoded? ?
+      Geocoder::Calculations.distance_between(
+        [countries.first.latitude, countries.first.longitude],
+        [0.00, countries.first.longitude]
+      ): 0 %>,
     <% countries.each do |country| %>
     {
       "season": "<%= country.game.season %>",
