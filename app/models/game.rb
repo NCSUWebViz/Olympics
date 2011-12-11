@@ -1,13 +1,17 @@
 class Game < ActiveRecord::Base
-  attr_accessible :country, :city, :year, :season, :url
+  attr_accessible :year, :country, :city, :summer, :latitude, :longitude, :meta_url,
+    :gold_count, :silver_count, :bronze_count, :countries_count, :sports_count,
+    :events_count
+  # ---------------------------------------------------------------------------
+  geocoded_by :location
+  after_validation :geocode
   # ---------------------------------------------------------------------------
   # Associations
-  has_many :countries
-  has_many :athletes, :through => :countries
-  has_many :medals, :through => :countries
+  has_many :participations
+  has_many :countries, :through => :participations
   # ---------------------------------------------------------------------------
-  # Class Methods
-  def self.retreive(game_id, save = true)
-    DatabaseOlympics.get_country_totals(game_id, save)
+  # Instance Methods
+  def location
+    self.city + ', ' + self.country
   end
 end

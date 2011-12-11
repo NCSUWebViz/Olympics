@@ -1,26 +1,16 @@
 [
-<% @countries.each do |name, countries| %>
+<% @countries.each do |country| %>
   { 
-    "name": "<%= name %>",
-    "code": "<%= countries.first.code %>",
-    "distance": <%= countries.first.geocoded? ?
-      Geocoder::Calculations.distance_between(
-        [countries.first.latitude, countries.first.longitude],
-        [0.00, countries.first.longitude]
-      ): 0 %>,
-    "participations": [
-    <% countries.each do |country| %>
+    id: <%= country.id %>,
+    name: "<%= country.name %>",
+    participations: [
+    <% country.participations.each do |participation| %>
     {
-      "season": "<%= country.game.season %>",
-      "location": "<%= country.game.city %>, <%= country.game.country %>",
-      "year": "<%= country.game.year %>",
-      "gold": <%= country.gold %>,
-      "silver": <%= country.silver %>,
-      "bronze": <%= country.bronze %>,
-      "total": <%= country.gold + country.silver + country.bronze %>
-    }<%=',' if country != countries.last %>
+      id: <%= participation.id %>
+      year: <%= participation.game.year %>
+    }<%=',' if participation != country.participations.last %>
     <% end %>
     ]
-  }<%=',' if name != @countries.keys.last %>
+  }<%=',' if country != @countries.last %>
 <% end %>
 ]

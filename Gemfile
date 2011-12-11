@@ -19,6 +19,10 @@ group :test do
   gem 'turn', :require => false
 end
 
+group :development do
+  gem 'ruby-debug19'
+end
+
 group :production do
   gem 'pg'
 end

@@ -3,6 +3,8 @@ OlympicGames::Application.routes.draw do
   resources :countries, :only => [:index, :show]
   resources :medals, :only => [:index]
   resources :sports, :only => [:index, :show]
+  
+  resources :participations, only: [:index, :show]
 
   root :to => 'games#index'
 end
