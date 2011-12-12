@@ -2,7 +2,7 @@ class CountriesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @countries = Country.order(:long_name)
+    @countries = Country.includes(:participations).order(:long_name)
     respond_with(@countries)
   end
 
