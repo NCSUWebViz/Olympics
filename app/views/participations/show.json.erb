@@ -14,7 +14,7 @@
       sport_id: <%= medals.first.event.sport.id %>,
       gold_count: <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>,
       silver_count: <%= medals.find_all{|medal| medal.medal == "SILVER"}.count %>,
-      bronze_count: <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>,
+      bronze_count: <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>
     }<%=',' if name != sports.keys.last %>
     <% end %>
   ]

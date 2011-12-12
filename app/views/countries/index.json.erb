@@ -6,7 +6,7 @@
     participations: [
     <% country.participations.each do |participation| %>
     {
-      id: <%= participation.id %>
+      id: <%= participation.id %>,
       year: <%= participation.game.year %>
     }<%=',' if participation != country.participations.last %>
     <% end %>
