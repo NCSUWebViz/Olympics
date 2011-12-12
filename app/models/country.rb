@@ -11,6 +11,6 @@ class Country < ActiveRecord::Base
   has_many :participations
   
   def name
-    self.long_name.sub(/ (.*)/, '')
+    self.long_name.sub(/ \(.*\)/, '')
   end
 end
