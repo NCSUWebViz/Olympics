@@ -2,6 +2,7 @@
   "id": <%= @participation.id %>,
   "year": <%= @participation.game.year %>,
   "location": "<%= @participation.game.location %>",
+  "summer": <%= @participation.game.summer? %>,
   "country": "<%= @participation.country.name %>",
   "gold_count": <%= @participation.gold_count %>,
   "silver_count": <%= @participation.silver_count %>,
