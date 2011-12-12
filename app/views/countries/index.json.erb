@@ -2,7 +2,7 @@
 <% @countries.each do |country| %>
   { 
     "id": <%= country.id %>,
-    "name": "<%= country.name %>",
+    "name": "<%= country.long_name %>",
     "participations": [
     <% country.participations.each do |participation| %>
     {
