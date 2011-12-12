@@ -7,7 +7,7 @@
     <% country.participations.each do |participation| %>
     {
       "id": <%= participation.id %>,
-      "summer": <%= participation.game.summer? %>
+      "summer": <%= participation.game.summer? %>,
       "year": <%= participation.game.year %>
     }<%=',' if participation != country.participations.last %>
     <% end %>
