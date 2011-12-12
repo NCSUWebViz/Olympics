@@ -1,13 +1,13 @@
 [
 <% @countries.each do |country| %>
   { 
-    id: <%= country.id %>,
-    name: "<%= country.name %>",
-    participations: [
+    "id": <%= country.id %>,
+    "name": "<%= country.name %>",
+    "participations": [
     <% country.participations.each do |participation| %>
     {
-      id: <%= participation.id %>,
-      year: <%= participation.game.year %>
+      "id": <%= participation.id %>,
+      "year": <%= participation.game.year %>
     }<%=',' if participation != country.participations.last %>
     <% end %>
     ]
