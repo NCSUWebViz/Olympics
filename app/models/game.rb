@@ -14,4 +14,12 @@ class Game < ActiveRecord::Base
   def location
     self.city + ', ' + self.country
   end
+  
+  def sport_count(sport)
+    count = 0
+    self.participations.each do |participation|
+      count = count + participation.medals.where(:event_id => sport.event_ids).count
+    end
+    return count
+  end
 end

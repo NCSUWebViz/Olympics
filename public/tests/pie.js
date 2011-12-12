@@ -68,7 +68,7 @@ function next(){
 }
 
 $(function () {
-    $.getJSON('/sports/Track%20&%20Field.json', function(data) {
+    $.getJSON('/sports/1.json', function(data) {
       games = data;
       drawChart();
     });

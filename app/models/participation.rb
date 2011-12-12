@@ -6,4 +6,16 @@ class Participation < ActiveRecord::Base
   belongs_to :game
   belongs_to :country
   has_many :medals
+  
+  scope :summer, joins(:game).where(:games => {:summer => true});
+  scope :winter, joins(:game).where(:games => {:summer => false});
+  
+  def self.update_count
+    Participation.all.each do |participation|
+      participation.gold_count = participation.medals.where(:medal => "GOLD").count
+      participation.silver_count = participation.medals.where(:medal => "SILVER").count
+      participation.bronze_count = participation.medals.where(:medal => "BRONZE").count
+      participation.save
+    end
+  end
 end

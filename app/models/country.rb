@@ -13,4 +13,16 @@ class Country < ActiveRecord::Base
   def name
     self.long_name.sub(/ \(.*\)/, '')
   end
+  
+  def self.update_count
+    Country.all.each do |country|
+      country.summer_gold_count = country.participations.summer.collect(&:gold_count).sum
+      country.summer_silver_count = country.participations.summer.collect(&:silver_count).sum
+      country.summer_bronze_count = country.participations.summer.collect(&:bronze_count).sum
+      country.winter_gold_count = country.participations.winter.collect(&:gold_count).sum
+      country.winter_silver_count = country.participations.winter.collect(&:silver_count).sum
+      country.winter_bronze_count = country.participations.winter.collect(&:bronze_count).sum
+      country.save
+    end
+  end
 end
