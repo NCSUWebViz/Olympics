@@ -9,15 +9,25 @@
   "bronze_count": <%= @participation.bronze_count %>,
   <% if @events.nil? %>
   "sports": [
-    <% @sports.each do |name, medals| %>
+    <% 
+      @sports.each do |name, medals|
+        gold_count = medals.find_all{|medal| medal.medal == "GOLD"}.count
+        silver_count = medals.find_all{|medal| medal.medal == "SILVER"}.count
+        bronze_count = medals.find_all{|medal| medal.medal == "BRONZE"}.count
+        
+        if (gold_count + silver_count + bronze_count) != 0
+    %>
     {
       "name": "<%= name %>",
       "sport_id": <%= medals.first.event.sport.id %>,
-      "gold_count": <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>,
-      "silver_count": <%= medals.find_all{|medal| medal.medal == "SILVER"}.count %>,
-      "bronze_count": <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>
+      "gold_count": <%= gold_count %>,
+      "silver_count": <%= silver_count %>,
+      "bronze_count": <%= bronze_count %>
     }<%=',' if name != @sports.keys.last %>
-    <% end %>
+    <% 
+        end
+      end 
+    %>
   ]
   <% else %>
   "sport": "<%= @sport.name %>",
@@ -28,7 +38,7 @@
       "event_id": <%= medals.first.event.id %>,
       "gold_count": <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>,
       "silver_count": <%= medals.find_all{|medal| medal.medal == "SILVER"}.count %>,
-      "bronze_count": <%= medals.find_all{|medal| medal.medal == "GOLD"}.count %>
+      "bronze_count": <%= medals.find_all{|medal| medal.medal == "BRONZE"}.count %>
     }<%=',' if name != @events.keys.last %>
     <% end %>
   ]
