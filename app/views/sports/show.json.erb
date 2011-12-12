@@ -6,7 +6,7 @@
     "year": <%= game.year %>,
     "sport": <%= @sport.id %>,
     "sport_medal_count": <%= sport_count = game.sport_count(@sport) %>,
-    "total_medal_count": <%= (game.gold_count + game.silver_count + game.bronze_count - sport_count) %>,
+    "total_medal_count": <%= (game.gold_count + game.silver_count + game.bronze_count - sport_count) %>
   }<%=',' if game != @games.last %>
 <% end %>
 ]
